@@ -1,11 +1,19 @@
 class User < ActiveRecord::Base
   belongs_to :user_type
-  has_many :content, dependent: :destroy
-  has_many :user_response, dependent: :destroy
+  has_one :user_profile, dependent: :destroy
+  has_one :user_preference, dependent: :destroy
+  has_many :user_match, dependent: :destroy
+  has_many :user_picture, dependent: :destroy
+  has_many :user_message, dependent: :destroy
+  has_many :user_rating, dependent: :destroy
+  has_many :user_blacklist, dependent: :destroy
+  has_many :flagged_user, dependent: :destroy
+  
   validates :user_type, presence: true
   validates :password_confirmation, presence: true
   validates_format_of :email,:with => Devise.email_regexp
   validates_confirmation_of :password
+  #validates :user_profile, presence: true 
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

@@ -11,82 +11,123 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126184117) do
+ActiveRecord::Schema.define(version: 20150123195641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "comment_responses", force: true do |t|
-    t.integer  "user_id",    limit: 8
-    t.integer  "comment_id", limit: 8
-    t.boolean  "response",             default: false, null: false
-    t.datetime "created_at"
+  create_table "blacklist_reasons", force: true do |t|
+    t.string "reason", null: false
   end
 
-  add_index "comment_responses", ["comment_id"], name: "index_comment_responses_on_comment_id", using: :btree
-  add_index "comment_responses", ["user_id"], name: "index_comment_responses_on_user_id", using: :btree
-
-  create_table "comments", force: true do |t|
-    t.integer  "user_id",        limit: 8
-    t.integer  "content_id",     limit: 8
-    t.text     "text",                     default: "", null: false
-    t.integer  "like_count",               default: 0,  null: false
-    t.integer  "new_like_count",           default: 0,  null: false
+  create_table "flagged_users", force: true do |t|
+    t.integer  "user_id",            limit: 8, null: false
+    t.integer  "userid_flagged",     limit: 8, null: false
+    t.integer  "flagging_reason_id",           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["content_id"], name: "index_comments_on_content_id", using: :btree
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+  create_table "flagging_reasons", force: true do |t|
+    t.string "reason", null: false
+  end
 
-  create_table "content_categories", force: true do |t|
-    t.string   "category"
+  create_table "quizzes", force: true do |t|
+    t.integer "category", default: 1,  null: false
+    t.string  "question", default: "", null: false
+    t.string  "choice1",  default: "", null: false
+    t.string  "choice2",  default: "", null: false
+    t.string  "choice3",  default: "", null: false
+    t.string  "choice4",  default: "", null: false
+  end
+
+  create_table "user_blacklists", force: true do |t|
+    t.integer  "user_id",             limit: 8, null: false
+    t.integer  "userid_blacklisted",  limit: 8, null: false
+    t.integer  "blacklist_reason_id",           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "content_flags", force: true do |t|
-    t.integer  "user_id",    limit: 8
-    t.integer  "content_id", limit: 8
-    t.datetime "created_at"
-  end
-
-  create_table "contents", force: true do |t|
-    t.integer  "user_id",             limit: 8
-    t.integer  "content_category_id"
-    t.text     "text",                          default: "",  null: false
-    t.string   "photo_token",                   default: "",  null: false
-    t.integer  "total_spread",                  default: 0,   null: false
-    t.integer  "spread_count",                  default: 0,   null: false
-    t.integer  "kill_count",                    default: 0,   null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.float    "freshness_factor",              default: 1.0, null: false
-    t.float    "spread_efficiency",             default: 1.0, null: false
-    t.float    "spread_index",                  default: 1.0, null: false
-    t.integer  "comment_count",                 default: 0,   null: false
-    t.integer  "flag_count",                    default: 0,   null: false
-    t.integer  "new_comment_count",             default: 0,   null: false
-  end
-
-  add_index "contents", ["spread_index"], name: "index_contents_on_spread_index", using: :btree
-  add_index "contents", ["user_id"], name: "index_contents_on_user_id", using: :btree
-
-  create_table "user_responses", force: true do |t|
-    t.integer  "user_id",    limit: 8
-    t.integer  "content_id", limit: 8
-    t.boolean  "response",             null: false
+  create_table "user_match_statuses", force: true do |t|
+    t.string   "status",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "user_responses", ["content_id"], name: "index_user_responses_on_content_id", using: :btree
-  add_index "user_responses", ["user_id"], name: "index_user_responses_on_user_id", using: :btree
+  create_table "user_matches", force: true do |t|
+    t.integer  "user_id",              limit: 8, null: false
+    t.integer  "userid_matched",       limit: 8, null: false
+    t.integer  "user_match_status_id"
+    t.datetime "expiry_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_messages", force: true do |t|
+    t.integer  "user_id",        limit: 8, null: false
+    t.integer  "userid_sent_to", limit: 8, null: false
+    t.string   "message",                  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_pictures", force: true do |t|
+    t.integer  "user_id",       limit: 8,                 null: false
+    t.integer  "display_order",           default: 0,     null: false
+    t.boolean  "is_private",              default: false, null: false
+    t.string   "photo_token",             default: "",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_preferences", force: true do |t|
+    t.integer  "user_id",    limit: 8,              null: false
+    t.integer  "distance",                          null: false
+    t.string   "movie",                default: [],              array: true
+    t.string   "music",                default: [],              array: true
+    t.string   "activity",             default: [],              array: true
+    t.string   "food",                 default: [],              array: true
+    t.string   "language",             default: [],              array: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_profiles", force: true do |t|
+    t.integer  "user_id",       limit: 8,                         null: false
+    t.string   "user_name",                                       null: false
+    t.integer  "birth_year",                                      null: false
+    t.string   "sex",                                             null: false
+    t.string   "sex_preferred",                                   null: false
+    t.decimal  "height",                  precision: 3, scale: 1, null: false
+    t.decimal  "weight",                  precision: 3, scale: 1, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_quiz_selections", force: true do |t|
+    t.integer  "user_id",          limit: 8
+    t.integer  "quiz_id"
+    t.integer  "userid_selected",  limit: 8, null: false
+    t.integer  "selector_choice",            null: false
+    t.integer  "responder_choice",           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_ratings", force: true do |t|
+    t.integer  "user_id",            limit: 8, null: false
+    t.integer  "userid_ratingsfrom", limit: 8, null: false
+    t.boolean  "funny"
+    t.boolean  "smart"
+    t.boolean  "friendly"
+    t.boolean  "interesting"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_types", force: true do |t|
-    t.string   "user_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "user_type"
   end
 
   create_table "users", force: true do |t|
@@ -101,7 +142,6 @@ ActiveRecord::Schema.define(version: 20141126184117) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "authentication_token"
-    t.string   "userid"
     t.integer  "user_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -110,16 +150,5 @@ ActiveRecord::Schema.define(version: 20141126184117) do
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  add_foreign_key "comment_responses", "comments", name: "comment_responses_comment_id_fk", dependent: :delete
-  add_foreign_key "comment_responses", "users", name: "comment_responses_user_id_fk", dependent: :delete
-
-  add_foreign_key "comments", "contents", name: "comments_content_id_fk", dependent: :delete
-  add_foreign_key "comments", "users", name: "comments_user_id_fk", dependent: :delete
-
-  add_foreign_key "contents", "users", name: "contents_user_id_fk", dependent: :delete
-
-  add_foreign_key "user_responses", "contents", name: "user_responses_content_id_fk", dependent: :delete
-  add_foreign_key "user_responses", "users", name: "user_responses_user_id_fk", dependent: :delete
 
 end

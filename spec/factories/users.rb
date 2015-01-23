@@ -2,10 +2,7 @@
 
 FactoryGirl.define do
   factory :user do
-    sequence(:userid,100) {|n| "user#{n}" }
-    email {"#{userid}@example.com"}
-    #userid Faker::Name.name.split.join
-    #email Faker::Internet.email
+    sequence(:email,100) {|n| "user#{n}@example.com" }
     password 'password'
     password_confirmation {password}
     user_type_id 2
@@ -14,7 +11,6 @@ FactoryGirl.define do
   end
 
   trait :anonymous do
-    userid nil
     email nil
     password nil
     password_confirmation nil

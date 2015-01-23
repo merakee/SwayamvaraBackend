@@ -33,7 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # Authentication
       t.string :authentication_token
       # Userid  
-      t.string :userid
+      #t.string :userid
       t.belongs_to :user_type  # t.belongs_to is alias for t.references, use t.references for other associations 
       
       t.timestamps
@@ -44,7 +44,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
     add_index  :users, :authentication_token, :unique => true
-    add_index  :users, :userid, :unique => true
+    # add_index  :users, :userid, :unique => true
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
     
