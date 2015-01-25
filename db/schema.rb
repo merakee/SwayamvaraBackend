@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123195641) do
+ActiveRecord::Schema.define(version: 20150125000216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,17 +28,23 @@ ActiveRecord::Schema.define(version: 20150123195641) do
     t.datetime "updated_at"
   end
 
+  add_index "flagged_users", ["user_id", "userid_flagged"], name: "index_flagged_users_on_user_id_and_userid_flagged", using: :btree
+
   create_table "flagging_reasons", force: true do |t|
     t.string "reason", null: false
   end
 
+  create_table "quiz_categories", force: true do |t|
+    t.string "category", null: false
+  end
+
   create_table "quizzes", force: true do |t|
-    t.integer "category", default: 1,  null: false
-    t.string  "question", default: "", null: false
-    t.string  "choice1",  default: "", null: false
-    t.string  "choice2",  default: "", null: false
-    t.string  "choice3",  default: "", null: false
-    t.string  "choice4",  default: "", null: false
+    t.integer "quiz_category_id",              null: false
+    t.string  "question",         default: "", null: false
+    t.string  "choice1",          default: "", null: false
+    t.string  "choice2",          default: "", null: false
+    t.string  "choice3",          default: "", null: false
+    t.string  "choice4",          default: "", null: false
   end
 
   create_table "user_blacklists", force: true do |t|
@@ -49,20 +55,22 @@ ActiveRecord::Schema.define(version: 20150123195641) do
     t.datetime "updated_at"
   end
 
+  add_index "user_blacklists", ["user_id", "userid_blacklisted"], name: "index_user_blacklists_on_user_id_and_userid_blacklisted", using: :btree
+
   create_table "user_match_statuses", force: true do |t|
-    t.string   "status",     null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "status", null: false
   end
 
   create_table "user_matches", force: true do |t|
-    t.integer  "user_id",              limit: 8, null: false
-    t.integer  "userid_matched",       limit: 8, null: false
-    t.integer  "user_match_status_id"
+    t.integer  "user_id",              limit: 8,             null: false
+    t.integer  "userid_matched",       limit: 8,             null: false
+    t.integer  "user_match_status_id",           default: 0, null: false
     t.datetime "expiry_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "user_matches", ["user_id", "userid_matched"], name: "index_user_matches_on_user_id_and_userid_matched", using: :btree
 
   create_table "user_messages", force: true do |t|
     t.integer  "user_id",        limit: 8, null: false
@@ -71,6 +79,8 @@ ActiveRecord::Schema.define(version: 20150123195641) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "user_messages", ["user_id", "userid_sent_to"], name: "index_user_messages_on_user_id_and_userid_sent_to", using: :btree
 
   create_table "user_pictures", force: true do |t|
     t.integer  "user_id",       limit: 8,                 null: false
@@ -81,9 +91,11 @@ ActiveRecord::Schema.define(version: 20150123195641) do
     t.datetime "updated_at"
   end
 
+  add_index "user_pictures", ["user_id"], name: "index_user_pictures_on_user_id", using: :btree
+
   create_table "user_preferences", force: true do |t|
     t.integer  "user_id",    limit: 8,              null: false
-    t.integer  "distance",                          null: false
+    t.integer  "distance",             default: 0,  null: false
     t.string   "movie",                default: [],              array: true
     t.string   "music",                default: [],              array: true
     t.string   "activity",             default: [],              array: true
@@ -92,6 +104,8 @@ ActiveRecord::Schema.define(version: 20150123195641) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "user_preferences", ["user_id"], name: "index_user_preferences_on_user_id", using: :btree
 
   create_table "user_profiles", force: true do |t|
     t.integer  "user_id",       limit: 8,                         null: false
@@ -115,9 +129,11 @@ ActiveRecord::Schema.define(version: 20150123195641) do
     t.datetime "updated_at"
   end
 
+  add_index "user_quiz_selections", ["user_id", "userid_selected"], name: "index_user_quiz_selections_on_user_id_and_userid_selected", using: :btree
+
   create_table "user_ratings", force: true do |t|
-    t.integer  "user_id",            limit: 8, null: false
-    t.integer  "userid_ratingsfrom", limit: 8, null: false
+    t.integer  "user_id",             limit: 8, null: false
+    t.integer  "userid_ratings_from", limit: 8, null: false
     t.boolean  "funny"
     t.boolean  "smart"
     t.boolean  "friendly"
@@ -126,8 +142,10 @@ ActiveRecord::Schema.define(version: 20150123195641) do
     t.datetime "updated_at"
   end
 
+  add_index "user_ratings", ["user_id", "userid_ratings_from"], name: "index_user_ratings_on_user_id_and_userid_ratings_from", using: :btree
+
   create_table "user_types", force: true do |t|
-    t.string "user_type"
+    t.string "user_type", null: false
   end
 
   create_table "users", force: true do |t|

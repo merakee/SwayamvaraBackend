@@ -1,7 +1,7 @@
 class CreateUserProfiles < ActiveRecord::Migration
   def change
     create_table :user_profiles do |t|
-      t.belongs_to :user , null: false , :limit => 8
+      t.belongs_to :user , null: false , limit: 8 
       t.string  :user_name, null: false 
       t.integer :birth_year, null: false 
       t.string  :sex , null: false 

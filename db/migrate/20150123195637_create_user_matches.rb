@@ -1,11 +1,13 @@
 class CreateUserMatches < ActiveRecord::Migration
   def change
     create_table :user_matches do |t|
-      t.belongs_to :user , null: false ,:limit => 8
-      t.integer :userid_matched, null: false , :limit => 8
-      t.belongs_to :user_match_status 
+      t.belongs_to :user , null: false ,limit: 8 
+      t.integer :userid_matched, null: false , limit: 8 
+      t.belongs_to :user_match_status, null: false, default: "Unknown"
       t.timestamp :expiry_time 
       t.timestamps
     end
+    
+    add_index :user_matches, [:user_id, :userid_matched]
   end
 end
