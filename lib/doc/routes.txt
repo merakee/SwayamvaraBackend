@@ -1,0 +1,7 @@
+                     Prefix Verb   URI Pattern               Controller#Action
+                       root GET    /                         api/v0/sessions#create
+                api_v0_root GET    /api/v0(.:format)         api/v0/sessions#create {:format=>:json}
+   api_v0_user_registration POST   /api/v0/signup(.:format)  api/v0/registrations#create {:format=>:json}
+        api_v0_user_session POST   /api/v0/signin(.:format)  api/v0/sessions#create {:format=>:json}
+api_v0_destroy_user_session DELETE /api/v0/signout(.:format) api/v0/sessions#destroy {:format=>:json}
+                                   /*all(.:format)           application#routing_error {:format=>:json}
