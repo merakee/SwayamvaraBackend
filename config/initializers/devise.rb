@@ -137,7 +137,7 @@ config.secret_key = '94ac427e388fe6674a9cf4a5fddb1fbcaf0509b07090e8aa257377f6dfc
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 8..128
+  config.password_length = 6..128
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly

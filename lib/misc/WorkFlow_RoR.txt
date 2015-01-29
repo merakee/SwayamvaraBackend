@@ -23,6 +23,41 @@ S. Make sure no two files share the same method name or shared example name or d
 #--------------------------------------------
 Rails Dir: /var/app/current
 
+#--------------------------------------------
+# Production Zip
+#--------------------------------------------
+# create zip files for production
+git archive --format=zip HEAD > production_zip_files/swayamvara-backend-production-03Nov2014.zip
+
+#--------------------------------------------
+#AWS flow and information:
+#--------------------------------------------
+
+Part I: Information
+App directory: /var/app/current
+Rails console: rails c
+Generate secret key: rake secret
+
+First time tasks:
+SSH to EB instance
+Cd to /var/app/current
+run > rake db:seed
+
+
+
+PART II: Flow
+
+1. Create EB instance with DB (pg)
+2. Create ElastiCache (redis)
+	Grant permission for EC instances
+	Get URL - need this to set REDIS_URL ENV var in EB (rails)
+	
+3. EB needs connection to 
+	S3: via ENV vars AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
+	ElastiCache: via ENV var REDIS_URL
+	
+	
+PART III: Resources
 
 AWS work flow:
 #--------------------------------------------

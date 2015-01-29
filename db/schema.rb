@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 20150125000216) do
     t.string   "sex",                                             null: false
     t.string   "sex_preferred",                                   null: false
     t.decimal  "height",                  precision: 3, scale: 1, null: false
-    t.decimal  "weight",                  precision: 3, scale: 1, null: false
+    t.decimal  "weight",                  precision: 4, scale: 1, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

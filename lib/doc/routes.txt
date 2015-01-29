@@ -1,7 +1,32 @@
-                     Prefix Verb   URI Pattern               Controller#Action
-                       root GET    /                         api/v0/sessions#create
-                api_v0_root GET    /api/v0(.:format)         api/v0/sessions#create {:format=>:json}
-   api_v0_user_registration POST   /api/v0/signup(.:format)  api/v0/registrations#create {:format=>:json}
-        api_v0_user_session POST   /api/v0/signin(.:format)  api/v0/sessions#create {:format=>:json}
-api_v0_destroy_user_session DELETE /api/v0/signout(.:format) api/v0/sessions#destroy {:format=>:json}
-                                   /*all(.:format)           application#routing_error {:format=>:json}
+                        Prefix Verb   URI Pattern                               Controller#Action
+                          root GET    /                                         api/v0/sessions#create
+                   api_v0_root GET    /api/v0(.:format)                         api/v0/sessions#create {:format=>:json}
+      api_v0_user_registration POST   /api/v0/signup(.:format)                  api/v0/registrations#create {:format=>:json}
+           api_v0_user_session POST   /api/v0/signin(.:format)                  api/v0/sessions#create {:format=>:json}
+   api_v0_destroy_user_session DELETE /api/v0/signout(.:format)                 api/v0/sessions#destroy {:format=>:json}
+             api_v0_users_show POST   /api/v0/users/show(.:format)              api/v0/users#show {:format=>:json}
+           api_v0_users_update POST   /api/v0/users/update(.:format)            api/v0/users#update {:format=>:json}
+   api_v0_user_profiles_create POST   /api/v0/user_profiles/create(.:format)    api/v0/user_profiles#create {:format=>:json}
+     api_v0_user_profiles_show POST   /api/v0/user_profiles/show(.:format)      api/v0/user_profiles#show {:format=>:json}
+   api_v0_user_profiles_update POST   /api/v0/user_profiles/update(.:format)    api/v0/user_profiles#update {:format=>:json}
+api_v0_user_preferences_create POST   /api/v0/user_preferences/create(.:format) api/v0/user_preferences#create {:format=>:json}
+  api_v0_user_preferences_show POST   /api/v0/user_preferences/show(.:format)   api/v0/user_preferences#show {:format=>:json}
+api_v0_user_preferences_update POST   /api/v0/user_preferences/update(.:format) api/v0/user_preferences#update {:format=>:json}
+   api_v0_user_pictures_create POST   /api/v0/user_pictures/create(.:format)    api/v0/user_pictures#create {:format=>:json}
+     api_v0_user_pictures_show POST   /api/v0/user_pictures/show(.:format)      api/v0/user_pictures#show {:format=>:json}
+   api_v0_user_pictures_update POST   /api/v0/user_pictures/update(.:format)    api/v0/user_pictures#update {:format=>:json}
+   api_v0_user_pictures_delete POST   /api/v0/user_pictures/delete(.:format)    api/v0/user_pictures#delete {:format=>:json}
+    api_v0_user_ratings_create POST   /api/v0/user_ratings/create(.:format)     api/v0/user_ratings#create {:format=>:json}
+      api_v0_user_ratings_show POST   /api/v0/user_ratings/show(.:format)       api/v0/user_ratings#show {:format=>:json}
+    api_v0_user_ratings_update POST   /api/v0/user_ratings/update(.:format)     api/v0/user_ratings#update {:format=>:json}
+    api_v0_user_matches_create POST   /api/v0/user_matches/create(.:format)     api/v0/user_matches#create {:format=>:json}
+      api_v0_user_matches_show POST   /api/v0/user_matches/show(.:format)       api/v0/user_matches#show {:format=>:json}
+    api_v0_user_matches_update POST   /api/v0/user_matches/update(.:format)     api/v0/user_matches#update {:format=>:json}
+   api_v0_user_messages_create POST   /api/v0/user_messages/create(.:format)    api/v0/user_messages#create {:format=>:json}
+     api_v0_user_messages_show POST   /api/v0/user_messages/show(.:format)      api/v0/user_messages#show {:format=>:json}
+   api_v0_flagged_users_create POST   /api/v0/flagged_users/create(.:format)    api/v0/flagged_users#create {:format=>:json}
+ api_v0_user_blacklists_create POST   /api/v0/user_blacklists/create(.:format)  api/v0/user_blacklists#create {:format=>:json}
+         api_v0_quizzes_create POST   /api/v0/quizzes/create(.:format)          api/v0/quizzes#create {:format=>:json}
+           api_v0_quizzes_show POST   /api/v0/quizzes/show(.:format)            api/v0/quizzes#show {:format=>:json}
+         api_v0_quizzes_update POST   /api/v0/quizzes/update(.:format)          api/v0/quizzes#update {:format=>:json}
+                                      /*all(.:format)                           application#routing_error {:format=>:json}

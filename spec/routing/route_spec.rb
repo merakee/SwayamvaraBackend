@@ -73,251 +73,332 @@ describe "Routes for" do
 
   end
 
-  # describe "User Paths: " do
-    # specify "show" do
-      # expect(:get =>  "api/v0/profile").to route_to(
-      # :controller => "api/v0/users",
-      # :action => "show",
-      # :format =>:json)
-    # end
-# 
-    # it "show via delete" do
-      # expect(:delete =>  "api/v0/profile").to route_to(
-      # :controller => "application",
-      # :action => "routing_error",
-      # :format =>:json,
-      # :all => "api/v0/profile")
-    # end
-    # it "show via post" do
-      # expect(:post =>  "api/v0/profile").to route_to(
-      # :controller => "application",
-      # :action => "routing_error",
-      # :format =>:json,
-      # :all => "api/v0/profile")
-    # end
-# 
-  # end
-
-  describe "Content Paths: " do
-    specify "index via get" do
-      expect(:get =>  "api/v0/contents/getlist").to route_to(
-      :controller => "application",
-      :action => "routing_error",
-      :format =>:json,
-      :all => "api/v0/contents/getlist")
+  describe "User Paths: " do
+    it "create" do
+      expect(:post =>  "api/v0/users/create").to route_to(
+       :controller => "application",
+       :action => "routing_error",
+       :format =>:json,
+       :all => "api/v0/users/create")
     end
 
-    specify "create" do
-      expect(:post =>  "api/v0/contents/create").to route_to(
-      :controller => "api/v0/contents",
-      :action => "create",
-      :format =>:json)
+    it "show" do
+      expect(:post =>  "api/v0/users/show").to route_to(
+       :controller => "api/v0/users",
+       :action => "show",
+       :format =>:json)
     end
 
-    specify "index" do
-      expect(:post =>  "api/v0/contents/getlist").to route_to(
-      :controller => "api/v0/contents",
-      :action => "index",
-      :format =>:json)
-    end
-    
-    specify "getcontent" do
-      expect(:post =>  "api/v0/contents/getcontent").to route_to(
-      :controller => "api/v0/contents",
-      :action => "get_content",
-      :format =>:json)
-    end 
-    
-    specify "getcontentrecent" do
-      expect(:post =>  "api/v0/contents/getrecent").to route_to(
-      :controller => "api/v0/contents",
-      :action => "get_recent",
-      :format =>:json)
-    end 
-    
-    specify "deletecontent" do
-      expect(:post =>  "api/v0/contents/delete").to route_to(
-      :controller => "api/v0/contents",
-      :action => "destroy",
-      :format =>:json)
-    end 
-    
-  end
-
-  describe "User Response Paths: " do
-    specify "create" do
-      expect(:post =>  "api/v0/contents/response").to route_to(
-      :controller => "api/v0/user_responses",
-      :action => "create",
-      :format =>:json)
+    it "update" do
+      expect(:post =>  "api/v0/users/update").to route_to(
+       :controller => "api/v0/users",
+       :action => "update",
+       :format =>:json)
     end
 
-    it "create via get" do
-      expect(:get => "api/v0/contents/response").to route_to(
-      :controller => "application",
-      :action => "routing_error",
-      :format =>:json,
-      :all => "api/v0/contents/response")
-    end
-
-  end
-  
-  describe "Content Flag Paths: " do
-    specify "flag" do
-      expect(:post =>  "api/v0/contents/flag").to route_to(
-      :controller => "api/v0/content_flag",
-      :action => "create",
-      :format =>:json)
-    end  
-  end
-  
-  describe "Comment Paths: " do
-    it "index via get" do
-      expect(:get => "api/v0/comments/getlist").to route_to(
-      :controller => "application",
-      :action => "routing_error",
-      :format =>:json,
-      :all => "api/v0/comments/getlist")
-    end
-    
-    specify "index" do
-      expect(:post =>  "api/v0/contents/getlist").to route_to(
-      :controller => "api/v0/contents",
-      :action => "index",
-      :format =>:json)
-    end
-    specify "create" do
-      expect(:post =>  "api/v0/comments/create").to route_to(
-      :controller => "api/v0/comments",
-      :action => "create",
-      :format =>:json)
+    it "delete" do
+      expect(:post =>  "api/v0/users/delete").to route_to(
+       :controller => "application",
+       :action => "routing_error",
+       :format =>:json,
+       :all => "api/v0/users/delete")
     end
 
   end
 
-  describe "Comment Response Paths: " do
-    specify "create" do
-      expect(:post =>  "api/v0/comments/response").to route_to(
-      :controller => "api/v0/comment_responses",
-      :action => "create",
-      :format =>:json)
+  describe "User Profile Paths: " do
+    it "create" do
+      expect(:post =>  "api/v0/user_profiles/create").to route_to(
+       :controller => "api/v0/user_profiles",
+       :action => "create",
+       :format =>:json)
     end
 
-    it "create via get" do
-      expect(:get => "api/v0/comments/response").to route_to(
-      :controller => "application",
-      :action => "routing_error",
-      :format =>:json,
-      :all => "api/v0/comments/response")
+    it "show" do
+      expect(:post =>  "api/v0/user_profiles/show").to route_to(
+       :controller => "api/v0/user_profiles",
+       :action => "show",
+       :format =>:json)
+    end
+
+    it "update" do
+      expect(:post =>  "api/v0/user_profiles/update").to route_to(
+       :controller => "api/v0/user_profiles",
+       :action => "update",
+       :format =>:json)
+    end
+
+    it "delete" do
+      expect(:post =>  "api/v0/user_profiles/delete").to route_to(
+       :controller => "application",
+       :action => "routing_error",
+       :format =>:json,
+       :all => "api/v0/user_profiles/delete")
+    end
+
+  end
+
+  describe "User Preference Paths: " do
+    it "create" do
+      expect(:post =>  "api/v0/user_preferences/create").to route_to(
+       :controller => "api/v0/user_preferences",
+       :action => "create",
+       :format =>:json)
+    end
+
+    it "show" do
+      expect(:post =>  "api/v0/user_preferences/show").to route_to(
+       :controller => "api/v0/user_preferences",
+       :action => "show",
+       :format =>:json)
+    end
+
+    it "update" do
+      expect(:post =>  "api/v0/user_preferences/update").to route_to(
+       :controller => "api/v0/user_preferences",
+       :action => "update",
+       :format =>:json)
+    end
+
+    it "delete" do
+      expect(:post =>  "api/v0/user_preferences/delete").to route_to(
+       :controller => "application",
+       :action => "routing_error",
+       :format =>:json,
+       :all => "api/v0/user_preferences/delete")
+    end
+
+  end
+
+  describe "User Picture Paths: " do
+    it "create" do
+      expect(:post =>  "api/v0/user_pictures/create").to route_to(
+       :controller => "api/v0/user_pictures",
+       :action => "create",
+       :format =>:json)
+    end
+
+    it "show" do
+      expect(:post =>  "api/v0/user_pictures/show").to route_to(
+       :controller => "api/v0/user_pictures",
+       :action => "show",
+       :format =>:json)
+    end
+
+    it "update" do
+      expect(:post =>  "api/v0/user_pictures/update").to route_to(
+       :controller => "api/v0/user_pictures",
+       :action => "update",
+       :format =>:json)
+    end
+
+    it "delete" do
+      expect(:post =>  "api/v0/user_pictures/delete").to route_to(
+       :controller => "api/v0/user_pictures",
+       :action => "delete",
+       :format =>:json)
+    end
+
+  end
+
+  describe "User Rating Paths: " do
+    it "create" do
+      expect(:post =>  "api/v0/user_ratings/create").to route_to(
+       :controller => "api/v0/user_ratings",
+       :action => "create",
+       :format =>:json)
+    end
+
+    it "show" do
+      expect(:post =>  "api/v0/user_ratings/show").to route_to(
+       :controller => "api/v0/user_ratings",
+       :action => "show",
+       :format =>:json)
+    end
+
+    it "update" do
+      expect(:post =>  "api/v0/user_ratings/update").to route_to(
+       :controller => "api/v0/user_ratings",
+       :action => "update",
+       :format =>:json)
+    end
+
+    it "delete" do
+      expect(:post =>  "api/v0/user_ratings/delete").to route_to(
+       :controller => "application",
+       :action => "routing_error",
+       :format =>:json,
+       :all => "api/v0/user_ratings/delete")
+    end
+
+  end
+
+  describe "User Match Paths: " do
+    it "create" do
+      expect(:post =>  "api/v0/user_matches/create").to route_to(
+       :controller => "api/v0/user_matches",
+       :action => "create",
+       :format =>:json)
+    end
+
+    it "show" do
+      expect(:post =>  "api/v0/user_matches/show").to route_to(
+       :controller => "api/v0/user_matches",
+       :action => "show",
+       :format =>:json)
+    end
+
+    it "update" do
+      expect(:post =>  "api/v0/user_matches/update").to route_to(
+       :controller => "api/v0/user_matches",
+       :action => "update",
+       :format =>:json)
+    end
+
+    it "delete" do
+      expect(:post =>  "api/v0/user_matches/delete").to route_to(
+       :controller => "application",
+       :action => "routing_error",
+       :format =>:json,
+       :all => "api/v0/user_matches/delete")
+    end
+
+  end
+
+  describe "User Message Paths: " do
+    it "create" do
+      expect(:post =>  "api/v0/user_messages/create").to route_to(
+       :controller => "api/v0/user_messages",
+       :action => "create",
+       :format =>:json)
+    end
+
+    it "show" do
+      expect(:post =>  "api/v0/user_messages/show").to route_to(
+       :controller => "api/v0/user_messages",
+       :action => "show",
+       :format =>:json)
+    end
+
+    it "update" do
+      expect(:post =>  "api/v0/user_messages/update").to route_to(
+       :controller => "application",
+       :action => "routing_error",
+       :format =>:json,
+       :all => "api/v0/user_messages/update")
+    end
+
+    it "delete" do
+      expect(:post =>  "api/v0/user_messages/delete").to route_to(
+       :controller => "application",
+       :action => "routing_error",
+       :format =>:json,
+       :all => "api/v0/user_messages/delete")
+    end
+
+  end
+
+  describe "Flagged User Paths: " do
+    it "create" do
+      expect(:post =>  "api/v0/flagged_users/create").to route_to(
+       :controller => "api/v0/flagged_users",
+       :action => "create",
+       :format =>:json)
+    end
+
+    it "show" do
+      expect(:post =>  "api/v0/flagged_users/show").to route_to(
+       :controller => "application",
+       :action => "routing_error",
+       :format =>:json,
+       :all => "api/v0/flagged_users/show")
+    end
+
+    it "update" do
+      expect(:post =>  "api/v0/flagged_users/update").to route_to(
+       :controller => "application",
+       :action => "routing_error",
+       :format =>:json,
+       :all => "api/v0/flagged_users/update")
+    end
+
+    it "delete" do
+      expect(:post =>  "api/v0/flagged_users/delete").to route_to(
+       :controller => "application",
+       :action => "routing_error",
+       :format =>:json,
+       :all => "api/v0/flagged_users/delete")
+    end
+
+  end
+
+  describe "User Blacklist Paths: " do
+    it "create" do
+      expect(:post =>  "api/v0/user_blacklists/create").to route_to(
+       :controller => "api/v0/user_blacklists",
+       :action => "create",
+       :format =>:json)
+    end
+
+    it "show" do
+      expect(:post =>  "api/v0/user_blacklists/show").to route_to(
+       :controller => "application",
+       :action => "routing_error",
+       :format =>:json,
+       :all => "api/v0/user_blacklists/show")
+    end
+
+    it "update" do
+      expect(:post =>  "api/v0/user_blacklists/update").to route_to(
+       :controller => "application",
+       :action => "routing_error",
+       :format =>:json,
+       :all => "api/v0/user_blacklists/update")
+    end
+
+    it "delete" do
+      expect(:post =>  "api/v0/user_blacklists/delete").to route_to(
+       :controller => "application",
+       :action => "routing_error",
+       :format =>:json,
+       :all => "api/v0/user_blacklists/delete")
     end
 
   end
 
 
-  describe "History Contents Paths: " do
-    specify "contents via post" do
-      expect(:post =>  "api/v0/history/contents").to route_to(
-      :controller => "api/v0/history",
-      :action => "contents",
-      :format =>:json)
+  describe "Quiz Paths: " do
+    it "create" do
+      expect(:post =>  "api/v0/quizzes/create").to route_to(
+       :controller => "api/v0/quizzes",
+       :action => "create",
+       :format =>:json)
     end
 
-    it "contents via get" do
-      expect(:get =>  "api/v0/history/contents").to route_to(
-      :controller => "application",
-      :action => "routing_error",
-      :format =>:json,
-      :all => "api/v0/history/contents")
+    it "show" do
+      expect(:post =>  "api/v0/quizzes/show").to route_to(
+       :controller => "api/v0/quizzes",
+       :action => "show",
+       :format =>:json)
     end
 
-  end
-
-  describe "History Comments Paths: " do
-    specify "comments via post" do
-      expect(:post =>  "api/v0/history/comments").to route_to(
-      :controller => "api/v0/history",
-      :action => "comments",
-      :format =>:json)
+    it "update" do
+      expect(:post =>  "api/v0/quizzes/update").to route_to(
+       :controller => "api/v0/quizzes",
+       :action => "update",
+       :format =>:json)
     end
 
-    it "comments via get" do
-      expect(:get =>  "api/v0/history/comments").to route_to(
-      :controller => "application",
-      :action => "routing_error",
-      :format =>:json,
-      :all => "api/v0/history/comments")
+    it "delete" do
+      expect(:post =>  "api/v0/quizzes/delete").to route_to(
+       :controller => "application",
+       :action => "routing_error",
+       :format =>:json,
+       :all => "api/v0/quizzes/delete")
     end
 
   end
 
-
-  describe "Notification Paths: " do
-    specify "getlist" do
-      expect(:post =>  "api/v0/notifications/getlist").to route_to(
-      :controller => "api/v0/notifications",
-      :action => "index",
-      :format =>:json)
-    end
-
-    it "getlist via get" do
-      expect(:get =>  "api/v0/notifications/getlist").to route_to(
-      :controller => "application",
-      :action => "routing_error",
-      :format =>:json,
-      :all => "api/v0/notifications/getlist")
-    end
-
-    specify "count" do
-      expect(:post =>  "api/v0/notifications/count").to route_to(
-      :controller => "api/v0/notifications",
-      :action => "count",
-      :format =>:json)
-    end
-
-    it "count via get" do
-      expect(:get =>  "api/v0/notifications/count").to route_to(
-      :controller => "application",
-      :action => "routing_error",
-      :format =>:json,
-      :all => "api/v0/notifications/count")
-    end
-    
-    specify "reset content" do
-      expect(:post =>  "api/v0/notifications/reset/content").to route_to(
-      :controller => "api/v0/notifications",
-      :action => "content_reset",
-      :format =>:json)
-    end
-
-    it "count via get" do
-      expect(:get =>  "api/v0/notifications/reset/content").to route_to(
-      :controller => "application",
-      :action => "routing_error",
-      :format =>:json,
-      :all => "api/v0/notifications/reset/content")
-    end
-    
-    specify "reset comment" do
-      expect(:post =>  "api/v0/notifications/reset/comment").to route_to(
-      :controller => "api/v0/notifications",
-      :action => "comment_reset",
-      :format =>:json)
-    end
-
-    it "count via get" do
-      expect(:get =>  "api/v0/notifications/reset/comment").to route_to(
-      :controller => "application",
-      :action => "routing_error",
-      :format =>:json,
-      :all => "api/v0/notifications/reset/comment")
-    end
-    
-   
-    
-  end
-  
-    
-  
   describe "Random Paths: " do
     it "via get" do
       expect(:get => "some/random/path/to/nowhere").to route_to(

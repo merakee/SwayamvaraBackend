@@ -39,6 +39,7 @@ if Rails.env == 'development'
   
   # # Users
   10.times do
-    FactoryGirl.create :user
+    user = FactoryGirl.create :user
+    FactoryGirl.create :user_profile, user: user
   end
 end
