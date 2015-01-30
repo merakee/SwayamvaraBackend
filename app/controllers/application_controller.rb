@@ -46,7 +46,7 @@ class ApplicationController < ActionController::API
       logger.info "System Error: Tried to access '#{request.fullpath}'.\n#{exception.class} error was raised for path .\n#{exception.message}"
     end
 
-    render :json=> {}, :status=> status
+    render :json => {}, status:  status
   end
 
 end

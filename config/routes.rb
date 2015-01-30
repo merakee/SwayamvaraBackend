@@ -1,75 +1,4 @@
 Rails.application.routes.draw do
-  get 'quizzes/create'
-
-  get 'quizzes/show'
-
-  get 'quizzes/update'
-
-  get 'quizzes/delete'
-
-  get 'user_blacklists/create'
-
-  get 'user_blacklists/show'
-
-  get 'user_blacklists/update'
-
-  get 'user_blacklists/delete'
-
-  get 'flagged_users/create'
-
-  get 'flagged_users/show'
-
-  get 'flagged_users/update'
-
-  get 'flagged_users/delete'
-
-  get 'user_messages/create'
-
-  get 'user_messages/show'
-
-  get 'user_messages/update'
-
-  get 'user_messages/delete'
-
-  get 'user_matches/create'
-
-  get 'user_matches/show'
-
-  get 'user_matches/update'
-
-  get 'user_matches/delete'
-
-  get 'user_ratings/create'
-
-  get 'user_ratings/show'
-
-  get 'user_ratings/update'
-
-  get 'user_ratings/delete'
-
-  get 'user_pictures/create'
-
-  get 'user_pictures/show'
-
-  get 'user_pictures/update'
-
-  get 'user_pictures/delete'
-
-  get 'user_preferences/create'
-
-  get 'user_preferences/show'
-
-  get 'user_preferences/update'
-
-  get 'user_preferences/delete'
-
-  get 'user_profiles/create'
-
-  get 'user_profiles/show'
-
-  get 'user_profiles/update'
-
-  get 'user_profiles/delete'
 
 #devise_for :users
   root 'api/v0/sessions#create'
@@ -99,6 +28,7 @@ Rails.application.routes.draw do
 
       #user profiles
       post 'user_profiles/create' => 'user_profiles#create'
+      post 'user_profiles/get_profile' => 'user_profiles#get_profile'
       post 'user_profiles/show' => 'user_profiles#show'
       post 'user_profiles/update' => 'user_profiles#update'
       #post 'user_profiles/delete' => 'user_profiles#delete'
@@ -132,7 +62,7 @@ Rails.application.routes.draw do
       post 'user_messages/show' => 'user_messages#show'
       #post 'user_messages/update' => 'user_messages#update'
       ##post 'user_messages/delete' => 'user_messages#delete'
-      
+
       #flagged users
       post 'flagged_users/create' => 'flagged_users#create'
       #post 'flagged_users/show' => 'flagged_users#show'
@@ -149,7 +79,7 @@ Rails.application.routes.draw do
       post 'quizzes/create' => 'quizzes#create'
       post 'quizzes/show' => 'quizzes#show'
       post 'quizzes/update' => 'quizzes#update'
-      #post 'quizzes/delete' => 'quizzes#delete'
+    #post 'quizzes/delete' => 'quizzes#delete'
 
     end
   end

@@ -9,7 +9,7 @@ class API::V0::SessionsController < Devise::SessionsController
   respond_to :json
   #force_ssl
   def create
-    user = User.find_for_database_authentication(:email => params[:user][:email])
+    user = User.find_for_database_authentication(email:  params[:user][:email])
     return invalid_login_attempt("invalid_email") unless user
     # anonymous user cannot sign in
     return if invalid_action_for_anonymous_user?(user)
@@ -25,7 +25,7 @@ class API::V0::SessionsController < Devise::SessionsController
   end
 
   def destroy
-    user = User.find_for_database_authentication(:email => params[:user][:email],:authentication_token => params[:user][:authentication_token])
+    user = User.find_for_database_authentication(email:  params[:user][:email],:authentication_token => params[:user][:authentication_token])
     if user && user.authentication_token
       # anonymous user cannot sign out
       return if invalid_action_for_anonymous_user?(user)
@@ -49,7 +49,7 @@ class API::V0::SessionsController < Devise::SessionsController
     login_err_msg = "Invalid email"  if option == "invalid_email"
     login_err_msg = "Invalid password" if option == "invalid_password"
 
-    render :json=> {:success=>false, :message=>login_err_msg}, :status=> :unauthorized # 401
+    render :json=> {:success=>false, :message=>login_err_msg}, status:  :unauthorized # 401
   end
 
 end

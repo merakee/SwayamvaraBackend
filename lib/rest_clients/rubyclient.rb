@@ -96,18 +96,18 @@ def api_call(verb='post',path='',data={})
   rest_call(verb,api_path(path),data)
 end
 # User Session: sign_up
-api_call('post','sign_up',{:user => {:user_type_id => 2, :email => 'me@me.com', :password => 'password',:password_confirmation => 'password'}})
+api_call('post','sign_up',{:user => {:user_type_id => 2, email:  'me@me.com', :password => 'password',:password_confirmation => 'password'}})
 @user = @response['user'] if @success
 puts @response# if !@success
 
 # User Session: sign_in
-api_call('post','sign_in',{:user => {:email => 'me@me.com', :password => 'password'}})
+api_call('post','sign_in',{:user => {email:  'me@me.com', :password => 'password'}})
 @user = @response['user'] if @success
 rest_call_error("Sign in failed: ")
 
 puts @user 
 # get content
-# api_call('get','contents', :params => {:user => {:email => @user['email'], :authentication_token => @user['authentication_token']}}) if @user
+# api_call('get','contents', :params => {:user => {email:  @user['email'], :authentication_token => @user['authentication_token']}}) if @user
 # rest_call_error("Get Content Failed: ")
 # 
 # @response['contents'].each {|content|
@@ -134,7 +134,7 @@ end
 
 # post contents
 content = get_content_text_only
-api_call('post','contents', {:user => {:email => @user['email'], :authentication_token => @user['authentication_token']}, :content => content, :multipart => true }) if @user
+api_call('post','contents', {:user => {email:  @user['email'], :authentication_token => @user['authentication_token']}, :content => content, :multipart => true }) if @user
 
 puts @response
 

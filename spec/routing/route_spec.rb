@@ -120,7 +120,14 @@ describe "Routes for" do
        :action => "show",
        :format =>:json)
     end
-
+    
+    it "get profile" do
+      expect(:post =>  "api/v0/user_profiles/get_profile").to route_to(
+       :controller => "api/v0/user_profiles",
+       :action => "get_profile",
+       :format =>:json)
+    end
+    
     it "update" do
       expect(:post =>  "api/v0/user_profiles/update").to route_to(
        :controller => "api/v0/user_profiles",

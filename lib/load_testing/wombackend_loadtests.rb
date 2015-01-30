@@ -31,7 +31,7 @@ test do
       { name: 'Content-Type', value: 'application/json' }
           ]
 
-      user = { :user => {:email => "me@me.com", :password => "password" } }
+      user = { :user => {email:  "me@me.com", :password => "password" } }
 
       post name: 'Sign in',
         url: api_path('sign_in'),

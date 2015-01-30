@@ -5,13 +5,13 @@ class API::V0::APIController < ApplicationController
   rescue_from(ActionController::ParameterMissing) do |parameter_missing_exception|
     errors = {}
     errors[parameter_missing_exception.param] = ['parameter is required']
-    render :json => {:success => false, :message => (errors.as_json)}, :status=> :unprocessable_entity
+    render :json => {success:  false, message:  (errors.as_json)}, status:  :unprocessable_entity
   end
 
   private
 
  def authenticate_user_from_token!
-    @current_user  = User.find_for_database_authentication(:email => user_params[:email])
+    @current_user  = User.find_for_database_authentication(email:  user_params[:email])
     # Notice how we use Devise.secure_compare to compare the token
     # in the database with the token given in the params, mitigating
     # timing attacks.

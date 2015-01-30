@@ -127,19 +127,19 @@ class ApiManager
     end
 
     def to_json
-      {:user_id => @user_id, :user_type_id => @user_type_id, :email => @email, :password => @password, :password_confirmation => @password_confirmation,:authentication_token => @authentication_token}
+      {:user_id => @user_id, :user_type_id => @user_type_id, email:  @email, :password => @password, :password_confirmation => @password_confirmation,:authentication_token => @authentication_token}
     end
 
     def sign_up
-      {:user_type_id => @user_type_id, :email => @email, :password => @password, :password_confirmation => @password_confirmation}
+      {:user_type_id => @user_type_id, email:  @email, :password => @password, :password_confirmation => @password_confirmation}
     end
 
     def sign_in
-      {:user_type_id => @user_type_id, :email => @email, :password => @password}
+      {:user_type_id => @user_type_id, email:  @email, :password => @password}
     end
 
     def auth
-      {:user_type_id => @user_type_id, :email => @email, :authentication_token => @authentication_token}
+      {:user_type_id => @user_type_id, email:  @email, :authentication_token => @authentication_token}
     end
   end
 
