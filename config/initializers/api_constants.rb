@@ -58,7 +58,7 @@ module APIConstants
     COMMENT_MODE_RECENT = "recent"
   end
   
-  module HISTORY
+  module MESSAGE
     ITEM_COUNT_PER_REQUEST = 20 
   end
   

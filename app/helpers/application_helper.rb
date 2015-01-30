@@ -20,7 +20,21 @@ module ApplicationHelper
         params[key]=params[key].to_i if params[key].is_a?String
       }
     end
+    
+    class Quiz
+      attr_accessor :question, :options, :quiz
+      def initialize
+        @question = ""
+        @options = []
+        @quiz={question:@question,options:@options}
+      end
 
+      def add_option(value,key) #(value: "", key: "")
+        @options << {value: value, key: key}
+      end
+    end
+    
+    
   end
 
 end

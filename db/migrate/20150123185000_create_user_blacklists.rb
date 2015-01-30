@@ -3,7 +3,7 @@ class CreateUserBlacklists < ActiveRecord::Migration
     create_table :user_blacklists do |t|
       t.belongs_to :user , null: false ,limit: 8 
       t.integer :userid_blacklisted, null: false , limit: 8 
-      t.belongs_to :blacklist_reason, null: false
+      t.integer :blacklist_reason, null: false, default: 0
       t.timestamps
     end
     

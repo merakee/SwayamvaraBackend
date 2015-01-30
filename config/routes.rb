@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       post 'user_preferences/create' => 'user_preferences#create'
       post 'user_preferences/show' => 'user_preferences#show'
       post 'user_preferences/update' => 'user_preferences#update'
+      post 'user_preferences/get_list' => 'user_preferences#get_list'
       ##post 'user_preferences/delete' => 'user_preferences#delete'
 
       #user pictures
@@ -59,7 +60,9 @@ Rails.application.routes.draw do
 
       #user messages
       post 'user_messages/create' => 'user_messages#create'
-      post 'user_messages/show' => 'user_messages#show'
+      post 'user_messages/get_list' => 'user_messages#get_list'
+      post 'user_messages/get_user_list' => 'user_messages#get_user_list'
+      #post 'user_messages/show' => 'user_messages#show'
       #post 'user_messages/update' => 'user_messages#update'
       ##post 'user_messages/delete' => 'user_messages#delete'
 

@@ -20,14 +20,14 @@ UserMatchStatus.create :status => status
 end
 
 # blacklist reasons
-%w[Unknown NotApproved Rejected Blocked Flagged].each do |reason|
-BlacklistReason.create :reason => reason
-end
+# %w[Unknown NotApproved Rejected Blocked Flagged].each do |reason|
+# BlacklistReason.create :reason => reason
+# end
 
 # flagging reasons
-%w[Unknown Offensive Fake Spammer].each do |reason|
-FlaggingReason.create :reason => reason
-end
+# %w[Unknown Offensive Fake Spammer].each do |reason|
+# FlaggingReason.create :reason => reason
+# end
 
 # quiz category 
 %w[Fun Personality Relationship LikeAndDislike WhatWouldYouDo Movies Music Activities CurrentEvents IQTest].each do |category|

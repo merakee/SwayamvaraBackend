@@ -16,23 +16,15 @@ ActiveRecord::Schema.define(version: 20150125000216) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "blacklist_reasons", force: true do |t|
-    t.string "reason", null: false
-  end
-
   create_table "flagged_users", force: true do |t|
-    t.integer  "user_id",            limit: 8, null: false
-    t.integer  "userid_flagged",     limit: 8, null: false
-    t.integer  "flagging_reason_id",           null: false
+    t.integer  "user_id",         limit: 8,             null: false
+    t.integer  "userid_flagged",  limit: 8,             null: false
+    t.integer  "flagging_reason",           default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "flagged_users", ["user_id", "userid_flagged"], name: "index_flagged_users_on_user_id_and_userid_flagged", using: :btree
-
-  create_table "flagging_reasons", force: true do |t|
-    t.string "reason", null: false
-  end
 
   create_table "quiz_categories", force: true do |t|
     t.string "category", null: false
@@ -48,9 +40,9 @@ ActiveRecord::Schema.define(version: 20150125000216) do
   end
 
   create_table "user_blacklists", force: true do |t|
-    t.integer  "user_id",             limit: 8, null: false
-    t.integer  "userid_blacklisted",  limit: 8, null: false
-    t.integer  "blacklist_reason_id",           null: false
+    t.integer  "user_id",            limit: 8,             null: false
+    t.integer  "userid_blacklisted", limit: 8,             null: false
+    t.integer  "blacklist_reason",             default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -94,13 +86,10 @@ ActiveRecord::Schema.define(version: 20150125000216) do
   add_index "user_pictures", ["user_id"], name: "index_user_pictures_on_user_id", using: :btree
 
   create_table "user_preferences", force: true do |t|
-    t.integer  "user_id",    limit: 8,              null: false
-    t.integer  "distance",             default: 0,  null: false
-    t.string   "movie",                default: [],              array: true
-    t.string   "music",                default: [],              array: true
-    t.string   "activity",             default: [],              array: true
-    t.string   "food",                 default: [],              array: true
-    t.string   "language",             default: [],              array: true
+    t.integer  "user_id",      limit: 8,             null: false
+    t.integer  "distance",               default: 0, null: false
+    t.integer  "age",                    default: 1, null: false
+    t.integer  "ralationship",           default: 1, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

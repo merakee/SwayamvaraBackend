@@ -167,6 +167,13 @@ describe "Routes for" do
        :format =>:json)
     end
 
+    it "get_list" do
+      expect(:post =>  "api/v0/user_preferences/get_list").to route_to(
+       :controller => "api/v0/user_preferences",
+       :action => "get_list",
+       :format =>:json)
+    end
+    
     it "delete" do
       expect(:post =>  "api/v0/user_preferences/delete").to route_to(
        :controller => "application",
@@ -174,6 +181,7 @@ describe "Routes for" do
        :format =>:json,
        :all => "api/v0/user_preferences/delete")
     end
+
 
   end
 
@@ -280,11 +288,26 @@ describe "Routes for" do
        :format =>:json)
     end
 
+    it "get_list" do
+      expect(:post =>  "api/v0/user_messages/get_list").to route_to(
+       :controller => "api/v0/user_messages",
+       :action => "get_list",
+       :format =>:json)
+    end
+    
+    it "get_user_list" do
+      expect(:post =>  "api/v0/user_messages/get_user_list").to route_to(
+       :controller => "api/v0/user_messages",
+       :action => "get_user_list",
+       :format =>:json)
+    end
+    
     it "show" do
       expect(:post =>  "api/v0/user_messages/show").to route_to(
-       :controller => "api/v0/user_messages",
-       :action => "show",
-       :format =>:json)
+       :controller => "application",
+       :action => "routing_error",
+       :format =>:json,
+       :all => "api/v0/user_messages/show")
     end
 
     it "update" do

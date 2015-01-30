@@ -13,7 +13,7 @@ class API::V0::UserPreferencesController < API::V0::APIController
     preference = UserPreference.new(params_create)
     preference.user_id = @current_user.id
     if preference.save
-      render :json => {success:  true,:preference => preference.as_json}, status:  :created
+      render :json => {success:  true, preference: preference.as_json}, status:  :created
     else
       warden.custom_failure!
       render :json => {success:  false, message:  (preference.errors.as_json)}, status:  :unprocessable_entity
@@ -27,7 +27,7 @@ class API::V0::UserPreferencesController < API::V0::APIController
   # @response [Json] user preference object
   def show
     return if invalid_action_for_anonymous_user?(@current_user)
-    render :json => {success:  true,:preference => @current_user.preference.as_json(root: true)}, status:  :ok #200
+    render :json => {success:  true, preference: @current_user.preference.as_json(root: true)}, status:  :ok #200
   end
   
   # Get user preference for given user_id
@@ -39,7 +39,7 @@ class API::V0::UserPreferencesController < API::V0::APIController
   def get_preference
     preference  = UserPreference.where(user_id: params_get_preference)
     if preference
-      render :json => {success:  true, :preference => preference.as_json}, status:  :ok
+      render :json => {success:  true, preference:  preference.as_json}, status:  :ok
     else
       render :json => {success:  false, message:  "Invalid user id"}, status:  :unprocessable_entity
     end
@@ -56,7 +56,7 @@ class API::V0::UserPreferencesController < API::V0::APIController
     # update current user
     preference = @current_user.user_preference
     if preference.update(params_update)
-      render :json => {success:  true, :preference => preference.as_json}, status:  :ok #200
+      render :json => {success:  true, preference: preference.as_json}, status:  :ok #200
     else
       warden.custom_failure!
       render :json => {success:  false, message:  (preference.errors.as_json)}, status:  :unprocessable_entity
@@ -73,13 +73,22 @@ class API::V0::UserPreferencesController < API::V0::APIController
     # update current user
     preference = @current_user.user_preference
     if preference.destroy
-      render :json=> {:success=>true, message: "User preference deleted"}, :status => :ok #200
+      render :json=> {success: true, message: "User preference deleted"}, status: :ok #200
     else
       warden.custom_failure!
       render :json => {success:  false, message:  (preference.errors.as_json)}, status:  :unprocessable_entity
     end
   end
 
+  # Get all preference question and options 
+  # @action POST
+  # @url /api/v0/user_preferences/get_list
+  # @required user [Hash] user hash with user email and auth token
+  # @response [Json] preference question and options
+  def get_list
+    render :json=> { success: true, preference_list: preference_list.as_json}, status: :ok 
+  end
+  
   private
 
   def params_get_preference
@@ -94,4 +103,39 @@ class API::V0::UserPreferencesController < API::V0::APIController
     params.require(:preference).permit(:user_name,:height,:weight)
   end
 
+  def preference_list
+    {distance:distance_preference_list,age:age_preference_list,relationship: relationship_preference_list}
+  end
+ def distance_preference_list
+    pref = Quiz.new
+    pref.question="What's your comfort zone?"
+    pref.add_option(value=0, key="Anywhere")
+    pref.add_option(value=10, key="Within 10Km")
+    pref.add_option(value=100, key="Within 100Km")
+    pref.add_option(value=500, key="Within 500Km")
+    pref.add_option(value=-10, key="Outside 10Km")
+    pref.add_option(value=-100, key="Outside 100Km")
+    pref.add_option(value=-500, key="outside 500Km")
+    pref.quiz
+  end
+
+  def relationship_preference_list
+    pref = Quiz.new
+    pref.question="What you looking for?"
+    pref.add_option(value=1, key="Just online chat")
+    pref.add_option(value=2, key="Frinds to hang out")
+    pref.add_option(value=3, key="Relationship")
+    pref.quiz
+  end
+
+  def age_preference_list
+    pref = Quiz.new
+    pref.question="What age group are you interested in?"
+    pref.add_option(value=1, key="Around my age")
+    pref.add_option(value=2, key="Older than me")
+    pref.add_option(value=3, key="Younger than me")
+    pref.add_option(value=4, key="Any")
+    pref.quiz
+  end
+  
 end
