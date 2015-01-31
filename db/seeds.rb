@@ -30,9 +30,9 @@ end
 # end
 
 # quiz category 
-%w[Fun Personality Relationship LikeAndDislike WhatWouldYouDo Movies Music Activities CurrentEvents IQTest].each do |category|
-QuizCategory.create :category => category
-end
+# %w[Fun Personality Relationship LikeAndDislike WhatWouldYouDo Movies Music Activities CurrentEvents IQTest].each do |category|
+# QuizCategory.create :category => category
+# end
 
 # seeds for only Dev 
 if Rails.env == 'development'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150125000216) do
+ActiveRecord::Schema.define(version: 20150123195641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,17 +26,13 @@ ActiveRecord::Schema.define(version: 20150125000216) do
 
   add_index "flagged_users", ["user_id", "userid_flagged"], name: "index_flagged_users_on_user_id_and_userid_flagged", using: :btree
 
-  create_table "quiz_categories", force: true do |t|
-    t.string "category", null: false
-  end
-
   create_table "quizzes", force: true do |t|
-    t.integer "quiz_category_id",              null: false
-    t.string  "question",         default: "", null: false
-    t.string  "choice1",          default: "", null: false
-    t.string  "choice2",          default: "", null: false
-    t.string  "choice3",          default: "", null: false
-    t.string  "choice4",          default: "", null: false
+    t.integer "quiz_category", default: 0,  null: false
+    t.string  "question",      default: "", null: false
+    t.string  "choice1",       default: "", null: false
+    t.string  "choice2",       default: "", null: false
+    t.string  "choice3",       default: "", null: false
+    t.string  "choice4",       default: "", null: false
   end
 
   create_table "user_blacklists", force: true do |t|

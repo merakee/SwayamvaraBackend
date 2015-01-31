@@ -27,7 +27,7 @@ class API::V0::UserPreferencesController < API::V0::APIController
   # @response [Json] user preference object
   def show
     return if invalid_action_for_anonymous_user?(@current_user)
-    render :json => {success:  true, preference: @current_user.preference.as_json(root: true)}, status:  :ok #200
+    render :json => {success:  true, preference: @current_user.preference.as_json}, status:  :ok #200
   end
   
   # Get user preference for given user_id

@@ -28,7 +28,7 @@ class API::V0::UserMessagesController < API::V0::APIController
   def get_list
     # get contents for user: History  manager
     messages = message_manager.get_messages(params_get_list.merge({user_id:@current_user.id}))
-    if(contents)
+    if(messages)
       render :json => {success: true, messages: messages.as_json}, status: :ok
     else
       render :json => {success: false, message: "Missing or Invalid parameter(s)"}, status: :unprocessable_entity
@@ -43,7 +43,7 @@ class API::V0::UserMessagesController < API::V0::APIController
   def get_user_list
     # get contents for user: History  manager
     users = message_manager.get_user_list({params:{user_id:@current_user.id}})
-    if(contents)
+    if(users)
       render :json => {success: true, users: users.as_json}, status: :ok
     else
       render :json => {success: false, message: "Missing or Invalid parameter(s)"}, status: :unprocessable_entity

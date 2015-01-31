@@ -1,7 +1,7 @@
 class CreateQuizzes < ActiveRecord::Migration
   def change
     create_table :quizzes do |t|
-      t.belongs_to :quiz_category , null: false
+      t.integer :quiz_category , null: false, default: 0
       t.string :question, default: "", null: false, unique: true 
       t.string :choice1, default: "", null: false
       t.string :choice2, default: "", null: false

@@ -120,14 +120,14 @@ describe "Routes for" do
        :action => "show",
        :format =>:json)
     end
-    
+
     it "get profile" do
       expect(:post =>  "api/v0/user_profiles/get_profile").to route_to(
        :controller => "api/v0/user_profiles",
        :action => "get_profile",
        :format =>:json)
     end
-    
+
     it "update" do
       expect(:post =>  "api/v0/user_profiles/update").to route_to(
        :controller => "api/v0/user_profiles",
@@ -167,13 +167,13 @@ describe "Routes for" do
        :format =>:json)
     end
 
-    it "get_list" do
+    it "get list" do
       expect(:post =>  "api/v0/user_preferences/get_list").to route_to(
        :controller => "api/v0/user_preferences",
        :action => "get_list",
        :format =>:json)
     end
-    
+
     it "delete" do
       expect(:post =>  "api/v0/user_preferences/delete").to route_to(
        :controller => "application",
@@ -181,7 +181,6 @@ describe "Routes for" do
        :format =>:json,
        :all => "api/v0/user_preferences/delete")
     end
-
 
   end
 
@@ -288,20 +287,20 @@ describe "Routes for" do
        :format =>:json)
     end
 
-    it "get_list" do
+    it "get list" do
       expect(:post =>  "api/v0/user_messages/get_list").to route_to(
        :controller => "api/v0/user_messages",
        :action => "get_list",
        :format =>:json)
     end
-    
-    it "get_user_list" do
+
+    it "get user list" do
       expect(:post =>  "api/v0/user_messages/get_user_list").to route_to(
        :controller => "api/v0/user_messages",
        :action => "get_user_list",
        :format =>:json)
     end
-    
+
     it "show" do
       expect(:post =>  "api/v0/user_messages/show").to route_to(
        :controller => "application",
@@ -333,6 +332,13 @@ describe "Routes for" do
       expect(:post =>  "api/v0/flagged_users/create").to route_to(
        :controller => "api/v0/flagged_users",
        :action => "create",
+       :format =>:json)
+    end
+
+    it "get list" do
+      expect(:post =>  "api/v0/flagged_users/get_list").to route_to(
+       :controller => "api/v0/flagged_users",
+       :action => "get_list",
        :format =>:json)
     end
 
@@ -396,7 +402,6 @@ describe "Routes for" do
 
   end
 
-
   describe "Quiz Paths: " do
     it "create" do
       expect(:post =>  "api/v0/quizzes/create").to route_to(
@@ -421,12 +426,32 @@ describe "Routes for" do
 
     it "delete" do
       expect(:post =>  "api/v0/quizzes/delete").to route_to(
-       :controller => "application",
-       :action => "routing_error",
-       :format =>:json,
-       :all => "api/v0/quizzes/delete")
+       :controller => "api/v0/quizzes",
+       :action => "delete",
+       :format =>:json)
     end
 
+    it "get info" do
+      expect(:post =>  "api/v0/quizzes/get_info").to route_to(
+       :controller => "api/v0/quizzes",
+       :action => "get_info",
+       :format =>:json)
+    end
+
+    it "get list" do
+      expect(:post =>  "api/v0/quizzes/get_list").to route_to(
+       :controller => "api/v0/quizzes",
+       :action => "get_list",
+       :format =>:json)
+    end
+
+    it "get categories" do
+      expect(:post =>  "api/v0/quizzes/get_categories").to route_to(
+       :controller => "api/v0/quizzes",
+       :action => "get_categories",
+       :format =>:json)
+    end
+    
   end
 
   describe "Random Paths: " do

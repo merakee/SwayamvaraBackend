@@ -20,14 +20,23 @@ class API::V0::FlaggedUsersController < API::V0::APIController
     end
   end
 
+  # Get list of reasons for flagging 
+  # @action POST
+  # @url /api/v0/flagged_users/get_list
+  # @required user [Hash] user hash with user email and auth token
+  # @response [Json] flagging_reason_list object with flagging question and options
+  def get_list
+    render :json=> { success: true, flagging_reason_list: reasons_list.as_json}, status: :ok 
+  end
+  
   private
 
  def reasons_list   
     reasons = Quiz.new
     reasons.question="Flagging this user because"
-    reasons.add_option(value=0, key="Unknown")
+    #reasons.add_option(value=0, key="Unknown")
     reasons.add_option(value=1, key="Offensive")
-    reasons.add_option(value=2, key="Fake")
+    reasons.add_option(value=2, key="Fake Profile")
     reasons.add_option(value=3, key="Cannot see face")
     reasons.add_option(value=4, key="Spam")
     reasons.quiz

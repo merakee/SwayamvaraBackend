@@ -1,12 +1,12 @@
 == README
 
-Project name: Swayamvara
+===Project name: Swayamvara
 
-Rails Backend: JSON based REST API 
+===Rails Backend: JSON based REST API 
 
-Project Start Date: 25 Jan 2015
+===Project Start Date: 25 Jan 2015
 
-Description: TBA 
+===Description: TBA 
 
 
 

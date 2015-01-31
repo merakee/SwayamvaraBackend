@@ -68,6 +68,7 @@ Rails.application.routes.draw do
 
       #flagged users
       post 'flagged_users/create' => 'flagged_users#create'
+      post 'flagged_users/get_list' => 'flagged_users#get_list'
       #post 'flagged_users/show' => 'flagged_users#show'
       #post 'flagged_users/update' => 'flagged_users#update'
       ##post 'flagged_users/delete' => 'flagged_users#delete'
@@ -82,8 +83,10 @@ Rails.application.routes.draw do
       post 'quizzes/create' => 'quizzes#create'
       post 'quizzes/show' => 'quizzes#show'
       post 'quizzes/update' => 'quizzes#update'
-    #post 'quizzes/delete' => 'quizzes#delete'
-
+      post 'quizzes/delete' => 'quizzes#delete'
+      post 'quizzes/get_list' => 'quizzes#get_list'
+      post 'quizzes/get_info' => 'quizzes#get_info'
+      post 'quizzes/get_categories' => 'quizzes#get_categories'
     end
   end
 

@@ -27,7 +27,7 @@ class API::V0::UserProfilesController < API::V0::APIController
   # @response [Json] user profile object
   def show
     return if invalid_action_for_anonymous_user?(@current_user)
-    render :json => {success:  true,:profile => @current_user.profile.as_json(root: true)}, status:  :ok #200
+    render :json => {success:  true,:profile => @current_user.profile.as_json}, status:  :ok #200
   end
 
   # Get user profile for given user_id
