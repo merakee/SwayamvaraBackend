@@ -8,6 +8,13 @@ class API::V0::SessionsController < Devise::SessionsController
   before_filter :ensure_params_exist
   respond_to :json
   #force_ssl
+  
+  
+  # Create user session and issue an auth token
+  # @action POST
+  # @url /api/v0/signin
+  # @required user [Hash] user hash with  :email,:password
+  # @response [Json] user object
   def create
     user = User.find_for_database_authentication(email:  params[:user][:email])
     return invalid_login_attempt("invalid_email") unless user
@@ -16,14 +23,18 @@ class API::V0::SessionsController < Devise::SessionsController
 
     if user.valid_password?(params[:user][:password])
       user.ensure_authentication_token!
-      render :json=> {:success=>true, user:{id:user.id,user_type_id:user.user_type_id, email:user.email, 
-        authentication_token: user.authentication_token}}, :status => :ok #200
+      render :json=> {:success=>true, user: user.as_json}, :status => :ok #200
 
     return
     end
     invalid_login_attempt("invalid_password")
   end
 
+  # Close user session and reset auth token
+  # @action POST
+  # @url /api/v0/signout
+  # @required user [Hash] user hash with  :email,:password
+  # @response [Json] message with success or failure 
   def destroy
     user = User.find_for_database_authentication(email:  params[:user][:email],:authentication_token => params[:user][:authentication_token])
     if user && user.authentication_token

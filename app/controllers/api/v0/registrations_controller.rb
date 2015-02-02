@@ -3,6 +3,11 @@ class API::V0::RegistrationsController < Devise::RegistrationsController
   before_filter :update_sanitized_params, if: :devise_controller?
   respond_to :json
   
+  # Create user account
+  # @action POST
+  # @url /api/v0/signup
+  # @required user [Hash] user hash with :user_type_id, :email,:password,:password_confirmation. For anonymous user sign up only :user_type_id is needed
+  # @response [Json] user object
   def create
     case  user_type_params
 
@@ -10,8 +15,8 @@ class API::V0::RegistrationsController < Devise::RegistrationsController
     when APIConstants::API_USER_TYPE::ANONYMOUS, APIConstants::API_USER_TYPE::ANONYMOUS.to_s
       anonymous_user_sign_up
     # regular
-    when APIConstants::API_USER_TYPE::Swayamvara, APIConstants::API_USER_TYPE::Swayamvara.to_s
-      swayamvara_user_sign_up
+    when APIConstants::API_USER_TYPE::Swayamvara, APIConstants::API_USER_TYPE::EMAIL.to_s
+      email_user_sign_up
     # other
     else
     render :json => {success: false, message: "Unknown user type"}, status:  :unprocessable_entity
@@ -27,7 +32,7 @@ class API::V0::RegistrationsController < Devise::RegistrationsController
     add_user(user)
   end
 
-  def swayamvara_user_sign_up
+  def email_user_sign_up
     user = User.new(user_params)
     add_user(user)
   end

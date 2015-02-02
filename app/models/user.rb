@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  belongs_to :user_type
   has_one :user_profile, dependent: :destroy
   has_one :user_preference, dependent: :destroy
   has_many :user_match, dependent: :destroy
@@ -9,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :user_blacklist, dependent: :destroy
   has_many :flagged_user, dependent: :destroy
   
-  validates :user_type, presence: true
+  validates :user_type_id, presence: true, inclusion: 1..2
   validates :password_confirmation, presence: true
   validates_format_of :email,:with => Devise.email_regexp
   validates_confirmation_of :password

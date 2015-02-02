@@ -30,6 +30,15 @@ class API::V0::UsersController < API::V0::APIController
 
   private
 
+ # For user list and associated id see APIConstants::API_USER_TYPE
+ # def user_type_list
+    # type_list = Quiz.new
+    # type_list.question="User Type"
+    # type_list.add_option(value=1, key="Anonymous")
+    # type_list.add_option(value=2, key="Email")
+    # type_list.quiz
+  # end
+  
   def params_update
     params.require(:update_params).permit(:email,:password,:password_confirmation)
   end

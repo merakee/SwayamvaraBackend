@@ -10,14 +10,14 @@
 
 # parmanent seeds
 # user_type
-%w[Anonymous Normal].each do |type|
-UserType.create :user_type => type
-end
+# %w[Anonymous Normal].each do |type|
+# UserType.create :user_type => type
+# end
 
 # user match status
-%w[Unknown Expressed Accepted Rejected Serious].each do |status|
-UserMatchStatus.create :status => status
-end
+# %w[Unknown Expressed Accepted Rejected Serious].each do |status|
+# UserMatchStatus.create :status => status
+# end
 
 # blacklist reasons
 # %w[Unknown NotApproved Rejected Blocked Flagged].each do |reason|

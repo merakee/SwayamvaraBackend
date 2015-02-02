@@ -199,6 +199,13 @@ describe "Routes for" do
        :format =>:json)
     end
 
+    it "get list" do
+      expect(:post =>  "api/v0/user_pictures/get_list").to route_to(
+       :controller => "api/v0/user_pictures",
+       :action => "get_list",
+       :format =>:json)
+    end
+    
     it "update" do
       expect(:post =>  "api/v0/user_pictures/update").to route_to(
        :controller => "api/v0/user_pictures",

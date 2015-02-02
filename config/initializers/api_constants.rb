@@ -2,7 +2,7 @@ module APIConstants
   # API USER TYPE
   module API_USER_TYPE
     ANONYMOUS =1
-    Swayamvara =2
+    EMAIL =2
     FACEBOOK =3
     TWITTER =4
     GOOGLE_PLUS =5

@@ -3,7 +3,7 @@ class CreateUserMatches < ActiveRecord::Migration
     create_table :user_matches do |t|
       t.belongs_to :user , null: false ,limit: 8 
       t.integer :userid_matched, null: false , limit: 8 
-      t.belongs_to :user_match_status, null: false, default: "Unknown"
+      t.integer :user_match_status, null: false, default: 0
       t.timestamp :expiry_time 
       t.timestamps
     end

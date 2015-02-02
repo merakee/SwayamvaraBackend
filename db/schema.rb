@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123195641) do
+ActiveRecord::Schema.define(version: 20150123195637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,14 +45,10 @@ ActiveRecord::Schema.define(version: 20150123195641) do
 
   add_index "user_blacklists", ["user_id", "userid_blacklisted"], name: "index_user_blacklists_on_user_id_and_userid_blacklisted", using: :btree
 
-  create_table "user_match_statuses", force: true do |t|
-    t.string "status", null: false
-  end
-
   create_table "user_matches", force: true do |t|
-    t.integer  "user_id",              limit: 8,             null: false
-    t.integer  "userid_matched",       limit: 8,             null: false
-    t.integer  "user_match_status_id",           default: 0, null: false
+    t.integer  "user_id",           limit: 8,             null: false
+    t.integer  "userid_matched",    limit: 8,             null: false
+    t.integer  "user_match_status",           default: 0, null: false
     t.datetime "expiry_time"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -129,10 +125,6 @@ ActiveRecord::Schema.define(version: 20150123195641) do
 
   add_index "user_ratings", ["user_id", "userid_ratings_from"], name: "index_user_ratings_on_user_id_and_userid_ratings_from", using: :btree
 
-  create_table "user_types", force: true do |t|
-    t.string "user_type", null: false
-  end
-
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -145,7 +137,7 @@ ActiveRecord::Schema.define(version: 20150123195641) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "authentication_token"
-    t.integer  "user_type_id"
+    t.integer  "user_type_id",           default: 1,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

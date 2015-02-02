@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       #user pictures
       post 'user_pictures/create' => 'user_pictures#create'
       post 'user_pictures/show' => 'user_pictures#show'
+      post 'user_pictures/get_list' => 'user_pictures#get_list'
       post 'user_pictures/update' => 'user_pictures#update'
       post 'user_pictures/delete' => 'user_pictures#delete'
 
